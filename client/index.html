@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <title>Angular QuickStart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://js.arcgis.com/4.2/esri/css/main.css">
+
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+
+	<style>
+	  html, body, #viewDiv {
+	    padding: 0;
+	    margin: 0;
+	    height: 100%;
+	    width: 100%;
+	  }
+	</style>
+	
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+	
+	function myFunction(passed, failed){
+	
+
+    }   
+    </script>
+  </head>
+
+  <body onload="myFunction(70,30)">
+    <my-app>Loading AppComponent content here ...</my-app>
+	<div id="viewDiv"></div>
+  </body>
+  <script src="https://js.arcgis.com/4.2/"></script>
+  <script>
+		require([
+		  "esri/Map",
+		  "esri/views/MapView",
+		  "dojo/domReady!"
+		], function(Map, MapView){
+		  var map = new Map({
+		    basemap: "streets"
+		  });
+		  var view = new MapView({
+		    container: "viewDiv",  // Reference to the scene div created in step 5
+		    map: map,  // Reference to the map object created before the scene
+		    zoom: 4,  // Sets the zoom level based on level of detail (LOD)
+		    center: [15, 65]  // Sets the center point of view in lon/lat
+		  });
+		});
+	</script>
+</html>

@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Donor = require('../express/models/Donor');
 var router = express.Router();
+var path = require('path');
+
 
 mongoose.connect('mongodb://localhost/donors'); // connect to our database
 
@@ -97,7 +99,14 @@ router.route('/donors/:donorId')
 		})
 	});
 
+app.use(express.static(path.join(__dirname, 'client')));
+
 app.use('/api', router);
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/index.html'));
+});
+
 
 app.listen(port);
 console.log('Listening on port ' + port);
