@@ -2,8 +2,9 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { AppComponent }  from './app.component';
-import { BuildService } from './build.service';
-import { MainGridComponent } from './main-grid.component';
+import { DonorService } from './donor.service';
+import { PatientComponent } from './patient.component';
+import { DonorComponent } from './donor.component';
 import { RouterModule } from '@angular/router';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
@@ -21,11 +22,12 @@ import {MaterializeDirective} from 'angular2-materialize';
   ],
   declarations: [
     AppComponent,
-    MainGridComponent,
+    PatientComponent,
+	DonorComponent,
     MaterializeDirective
   ],
   providers: [
-    BuildService
+    DonorService
   ],
   bootstrap: [ AppComponent ]
 })

@@ -12,8 +12,9 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
-var build_service_1 = require('./build.service');
-var main_grid_component_1 = require('./main-grid.component');
+var donor_service_1 = require('./donor.service');
+var patient_component_1 = require('./patient.component');
+var donor_component_1 = require('./donor.component');
 var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
 var in_memory_data_service_1 = require('./in-memory-data.service');
 var app_routing_module_1 = require('./app-routing.module');
@@ -31,11 +32,12 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                main_grid_component_1.MainGridComponent,
+                patient_component_1.PatientComponent,
+                donor_component_1.DonorComponent,
                 angular2_materialize_1.MaterializeDirective
             ],
             providers: [
-                build_service_1.BuildService
+                donor_service_1.DonorService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

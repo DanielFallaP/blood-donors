@@ -1,4 +1,4 @@
-export class Record{
+export class Donor{
   id: string;
   type: string;
   owner: string;

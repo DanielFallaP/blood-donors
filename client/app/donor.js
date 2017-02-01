@@ -6,4 +6,4 @@ var Donor = (function () {
     return Donor;
 }());
 exports.Donor = Donor;
-//# sourceMappingURL=record.js.map
+//# sourceMappingURL=donor.js.map

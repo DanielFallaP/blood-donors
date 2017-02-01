@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var main_grid_component_1 = require('./main-grid.component');
+var patient_component_1 = require('./patient.component');
+var donor_component_1 = require('./donor.component');
 var routes = [
-    { path: '', redirectTo: '/main', pathMatch: 'full' },
-    { path: 'main', component: main_grid_component_1.MainGridComponent },
+    //{ path: '', redirectTo: '/patient', pathMatch: 'full' },
+    { path: 'patient', component: patient_component_1.PatientComponent },
+    { path: 'donor', component: donor_component_1.DonorComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

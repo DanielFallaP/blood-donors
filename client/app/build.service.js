@@ -33,29 +33,29 @@ var recordDetails = [
         debugBuild: true, releaseBuild: true, unitTestCoverage: 67, unitTestSuccessful: 34, unitTestFailing: 20, funcTestCoverage: 10, funcTestSuccessful: 56, funcTestFailing: 67
     }
 ];
-var BuildService = (function () {
-    function BuildService(http) {
+var DonorService = (function () {
+    function DonorService(http) {
         this.http = http;
         this.recordsUrl = 'api/records';
     }
-    BuildService.prototype.getRecords = function () {
+    DonorService.prototype.getRecords = function () {
         return this.http.get(this.recordsUrl)
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
-    BuildService.prototype.getRecordDetail = function (id) {
+    DonorService.prototype.getRecordDetail = function (id) {
         var list = recordDetails.filter(function (el) { return el.id === id; });
         return Promise.resolve(list.length > 0 ? list[0] : null);
     };
-    BuildService.prototype.handleError = function (error) {
+    DonorService.prototype.handleError = function (error) {
         return Promise.reject(error.message || error);
     };
-    BuildService = __decorate([
+    DonorService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], BuildService);
-    return BuildService;
+    ], DonorService);
+    return DonorService;
 }());
-exports.BuildService = BuildService;
+exports.DonorService = DonorService;
 //# sourceMappingURL=build.service.js.map

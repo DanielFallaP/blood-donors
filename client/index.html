@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="styles.css">
 
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://js.arcgis.com/4.2/esri/css/main.css">
+<!-- 	<link rel="stylesheet" href="https://js.arcgis.com/4.2/esri/css/main.css"> -->
+
+	<link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+	<link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/themes/calcite/dijit/calcite.css">
+	
 
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	
@@ -24,47 +28,46 @@
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-
 	<style>
-	  html, body, #viewDiv {
-	    padding: 0;
-	    margin: 0;
-	    height: 100%;
-	    width: 100%;
-	  }
-	</style>
+      html,
+      body,
+      #map {
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+      }
+      #search {
+         display: block;
+         position: absolute;
+         z-index: 2;
+         top: 20px;
+         left: 250px;
+      }
+      #LocateButton {
+	      position: absolute;
+	      top: 150px;
+	      left: 22px;
+	      z-index: 50;
+	   }
+	   .esriScalebar{
+        padding: 20px 20px;
+      }
+    </style>
 	
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('app').catch(function(err){ console.error(err); });
-	
-	function myFunction(passed, failed){
-	
-
-    }   
+      System.import('app').catch(function(err){ console.error(err); });   
     </script>
   </head>
 
-  <body onload="myFunction(70,30)">
+ <body class="calcite">
     <my-app>Loading AppComponent content here ...</my-app>
-	<div id="viewDiv"></div>
-  </body>
-  <script src="https://js.arcgis.com/4.2/"></script>
-  <script>
-		require([
-		  "esri/Map",
-		  "esri/views/MapView",
-		  "dojo/domReady!"
-		], function(Map, MapView){
-		  var map = new Map({
-		    basemap: "streets"
-		  });
-		  var view = new MapView({
-		    container: "viewDiv",  // Reference to the scene div created in step 5
-		    map: map,  // Reference to the map object created before the scene
-		    zoom: 4,  // Sets the zoom level based on level of detail (LOD)
-		    center: [15, 65]  // Sets the center point of view in lon/lat
-		  });
-		});
-	</script>
+</body>
+<!--   <script src="https://js.arcgis.com/4.2/"></script> -->
+	<script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+      
+    </script>
+  </head>
 </html>
