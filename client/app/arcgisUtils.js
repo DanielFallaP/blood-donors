@@ -1,5 +1,11 @@
-function initPatientMap(){
-	var map;
+var featureLayer;
+var map;
+
+function getMap(){
+	return map;
+}
+
+function initPatientMap(mmap){
       require([
 		"esri/dijit/Search",
 		"esri/dijit/LocateButton",
@@ -22,33 +28,33 @@ function initPatientMap(){
         Point,
         Graphic,
         on,
-        array
+        array, 
+		mmap
       ) {
 
-        var featureLayer;
 
-        map = new Map("map", {
+        mappp = new Map("map", {
           basemap: "streets",
           center: [-46.807, 32.553],
           zoom: 3
         });
 		
 		var search = new Search({
-            map: map
+            map: mappp
          }, "search");
          search.startup();
          
          var geoLocate = new LocateButton({
-           map: map
+           map: mappp
          }, "LocateButton");
          geoLocate.startup();
 
         //hide the popup if its outside the map's extent
-        map.on("mouse-drag", function(evt) {
-          if (map.infoWindow.isShowing) {
-            var loc = map.infoWindow.getSelectedFeature().geometry;
-            if (!map.extent.contains(loc)) {
-              map.infoWindow.hide();
+        mappp.on("mouse-drag", function(evt) {
+          if (mappp.infoWindow.isShowing) {
+            var loc = mappp.infoWindow.getSelectedFeature().geometry;
+            if (!mappp.extent.contains(loc)) {
+              mappp.infoWindow.hide();
             }
           }
         });
@@ -105,32 +111,33 @@ function initPatientMap(){
 
         //associate the features with the popup on click
         featureLayer.on("click", function(evt) {
-          map.infoWindow.setFeatures([evt.graphic]);
+          mappp.infoWindow.setFeatures([evt.graphic]);
         });
-
-        map.on("layers-add-result", function() {
-			var features = [];
         
+        mappp.on("layers-add-result", function() {
+
+			var features = [];
+				
 			var item = {"title":"290 (1) United Counties (NBC)","link":"https://www.flickr.com/photos/69947186@N08/32210811530/","media":{"m":"https://farm1.staticflickr.com/555/32210811530_4e88be447c_m.jpg"},"date_taken":"1985-03-12T14:54:13-08:00","description":" <p><a href=\"https://www.flickr.com/people/69947186@N08/\">DeanM66A</a> posted a photo:</p> <p><a href=\"https://www.flickr.com/photos/69947186@N08/32210811530/\" title=\"290 (1) United Counties (NBC)\"><img src=\"https://farm1.staticflickr.com/555/32210811530_4e88be447c_m.jpg\" width=\"240\" height=\"160\" alt=\"290 (1) United Counties (NBC)\" /></a></p> <p>Bristol RE 290 (WBD 290H) is seen at the re-vamped (and long-closed) Kettering bus station in the days when the town only had one bus station. 290 is painted in bus livery despite having coach seats.</p>","published":"2017-01-31T13:51:31Z","author":"nobody@flickr.com (\"DeanM66A\")","author_id":"69947186@N08","tags":"290 wbd290h unitedcounties bristol re ecw kettering busstation","latitude":"52.396579","longitude":"-0.728702"};
-		
-			  var attr = {};
-			  attr["description"] = item.description;
-			  attr["title"] = item.title ? item.title : "Flickr Photo";
-
-			  var geometry = new Point(item);
-
-			  var graphic = new Graphic(geometry);
-			  graphic.setAttributes(attr);
-			  features.push(graphic);
+	
+			var attr = {};
+			attr["description"] = item.description;
+			attr["title"] = item.title ? item.title : "Flickr Photo";
+	
+			var geometry = new Point(item);
+	
+			var graphic = new Graphic(geometry);
+			graphic.setAttributes(attr);
+			features.push(graphic);
 			//features.push(feature);
-
+	
 			featureLayer.applyEdits(features, null, null);
+
         });
-		
         //add the feature layer that contains the flickr photos to the map
-        map.addLayers([featureLayer]);
+        mappp.addLayers([featureLayer]);
 		
-		var mapExtentChange = map.on("extent-change", changeHandler);
+		var mapExtentChange = mappp.on("extent-change", changeHandler);
 
 		function changeHandler(evt){
 		  var extent = evt.extent,
@@ -141,6 +148,51 @@ function initPatientMap(){
 		  
 		}
     });
+}
+
+function setDonors(donors){
+	require([
+		"esri/dijit/Search",
+		"esri/dijit/LocateButton",
+        "esri/map",
+        "esri/layers/FeatureLayer",
+        "esri/dijit/PopupTemplate",
+        "esri/request",
+        "esri/geometry/Point",
+        "esri/graphic",
+        "dojo/on",
+        "dojo/_base/array",
+        "dojo/domReady!"
+      ], function(
+		Search,
+		LocateButton,
+        Map,
+        FeatureLayer,
+        PopupTemplate,
+        esriRequest,
+        Point,
+        Graphic,
+        on,
+        array
+      ) {
+
+		var features = [];
+			
+		var item = {"title":"290 (1) United Counties (NBC)","link":"https://www.flickr.com/photos/69947186@N08/32210811530/","media":{"m":"https://farm1.staticflickr.com/555/32210811530_4e88be447c_m.jpg"},"date_taken":"1985-03-12T14:54:13-08:00","description":" <p><a href=\"https://www.flickr.com/people/69947186@N08/\">DeanM66A</a> posted a photo:</p> <p><a href=\"https://www.flickr.com/photos/69947186@N08/32210811530/\" title=\"290 (1) United Counties (NBC)\"><img src=\"https://farm1.staticflickr.com/555/32210811530_4e88be447c_m.jpg\" width=\"240\" height=\"160\" alt=\"290 (1) United Counties (NBC)\" /></a></p> <p>Bristol RE 290 (WBD 290H) is seen at the re-vamped (and long-closed) Kettering bus station in the days when the town only had one bus station. 290 is painted in bus livery despite having coach seats.</p>","published":"2017-01-31T13:51:31Z","author":"nobody@flickr.com (\"DeanM66A\")","author_id":"69947186@N08","tags":"290 wbd290h unitedcounties bristol re ecw kettering busstation","latitude":"52.396579","longitude":"-0.728702"};
+
+		var attr = {};
+		attr["description"] = item.description;
+		attr["title"] = item.title ? item.title : "Flickr Photo";
+
+		var geometry = new Point(item);
+
+		var graphic = new Graphic(geometry);
+		graphic.setAttributes(attr);
+		features.push(graphic);
+		//features.push(feature);
+
+		featureLayer.applyEdits(features, null, null);
+	})
 }
 
 function initDonorMap(){

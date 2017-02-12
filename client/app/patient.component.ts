@@ -1,6 +1,8 @@
 declare function showModal():void;
 declare function showToast(message:string, delay:number):void;
 declare function initPatientMap(): void;
+declare function setDonors(donors: Donor[]): void;
+declare function getMap(): any;
 
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
@@ -23,7 +25,19 @@ export class PatientComponent{
   records: Donor[];
   recordDetail: RecordDetail;
   ngOnInit(): void{
-	initPatientMap();
+	initPatientMap({});
+	//getMap().on('layers-add-result', function(){
+	//	alert('added!!');
+	//});
+	/*this.donorService.getComments()
+		   .subscribe(
+			donors => {
+				setDonors(donors);
+			}, //Bind to view
+			err => {
+				// Log errors if any
+				console.log(err);
+			});*/
   };
   
   getDonors(): void {

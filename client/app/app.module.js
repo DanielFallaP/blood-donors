@@ -15,8 +15,6 @@ var app_component_1 = require('./app.component');
 var donor_service_1 = require('./donor.service');
 var patient_component_1 = require('./patient.component');
 var donor_component_1 = require('./donor.component');
-var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
-var in_memory_data_service_1 = require('./in-memory-data.service');
 var app_routing_module_1 = require('./app-routing.module');
 var angular2_materialize_1 = require('angular2-materialize');
 var AppModule = (function () {
@@ -27,7 +25,6 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
-                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [

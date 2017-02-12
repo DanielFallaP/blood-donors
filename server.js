@@ -16,6 +16,7 @@ router.use(function (req, res, next){
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+//app.use("/",   [      express.static(__dirname+'/client')]);
 
 var port = process.env.PORT || 8080;
 
@@ -103,9 +104,12 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 app.use('/api', router);
 
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, 'client/index.html'));
-});
+//app.get('*', (req, res) => {
+//	res.sendFile(path.join(__dirname, 'client/index.html'));
+//});
+app.get('*',function(req,res){  
+    res.redirect('client/' + req.url)
+})
 
 
 app.listen(port);

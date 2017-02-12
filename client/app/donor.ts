@@ -1,13 +1,11 @@
 export class Donor{
-  id: string;
-  type: string;
-  owner: string;
-  timeStarted?: number;
-  timeStartedDate?: Date;
-  state: string;
-  metrics: number;
-  build: number;
-  unitTest: number;
-  functionalTest: number;
-  open: boolean=false;
+  _id: string;
+  firstName: string;
+  lastName: string;
+  contactNumber?: number;
+  email?: Date;
+  bloodGroup: string;
+  latitude: number;
+  longitude: number;
+  ipAddress?: number;
 }

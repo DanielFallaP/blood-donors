@@ -17,7 +17,19 @@ var PatientComponent = (function () {
         this.donorService = donorService;
     }
     PatientComponent.prototype.ngOnInit = function () {
-        initPatientMap();
+        initPatientMap({});
+        //getMap().on('layers-add-result', function(){
+        //	alert('added!!');
+        //});
+        /*this.donorService.getComments()
+               .subscribe(
+                donors => {
+                    setDonors(donors);
+                }, //Bind to view
+                err => {
+                    // Log errors if any
+                    console.log(err);
+                });*/
     };
     ;
     PatientComponent.prototype.getDonors = function () {

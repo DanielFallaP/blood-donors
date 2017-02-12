@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
     <div class="nav-wrapper" style="background-color:red;">
       <div class="brand-logo">&nbsp;{{title}}</div>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="patient">I'll Give, Damn</a></li>
-        <li><a href="donor">I Need Some!</a></li>
+        <li><a routerLink="/donor">I'll Give, Damn</a></li>
+        <li><a routerLink="/patient">I Need Some!</a></li>
       </ul>
     </div>
   </nav>

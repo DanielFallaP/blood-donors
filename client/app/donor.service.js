@@ -11,19 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/toPromise');
 var http_1 = require('@angular/http');
+var Rx_1 = require('rxjs/Rx');
 var DonorService = (function () {
     function DonorService(http) {
         this.http = http;
-        this.recordsUrl = 'api/records';
     }
     DonorService.prototype.getDonors = function () {
-        return this.http.get(this.recordsUrl)
+        return this.http.get('http://localhost:8080/api/donors')
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
+    DonorService.prototype.getComments = function () {
+        // ...using get request
+        return this.http.get('http://localhost:8080/api/donors')
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+    };
     DonorService.prototype.getDonorDetail = function (id) {
-        return null;
+        return this.http.get('http://localhost:8080/api/donors/' + id)
+            .toPromise()
+            .then(function (response) { return response.json().data; })
+            .catch(this.handleError);
     };
     DonorService.prototype.handleError = function (error) {
         return Promise.reject(error.message || error);
